@@ -1,0 +1,35 @@
+{
+  "name": "police-stations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "serve": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/korolovdmitriy/police-stations.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/korolovdmitriy/police-stations/issues"
+  },
+  "homepage": "https://github.com/korolovdmitriy/police-stations#readme",
+  "dependencies": {
+    "cassandra-driver": "^4.6.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15"
+  }
+}
