@@ -12,9 +12,8 @@ const client = new Client({
 });
 
 exports.getFromData = async (query) => {
-  //   const query = "SELECT * FROM police.station";
   await client.connect();
-  const rs = await client.execute(query);
+  const result = await client.execute(query);
   await client.shutdown();
-  return rs.rows;
+  return result.rows;
 };

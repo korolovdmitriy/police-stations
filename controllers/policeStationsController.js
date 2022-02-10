@@ -11,13 +11,12 @@ exports.getPoliceStations = (req, res) => {
 };
 
 exports.postPoliceStation = (req, res) => {
-  try {
-    const station = req.body;
-    //   add to bd
-    res.send(station);
-  } catch (error) {
-    return res.status(500).send(error);
-  }
+  const station = req.body;
+  const query = `INSERT INTO police.station (id, location) VALUES (${station.id}, '${station.location}')`;
+  model
+    .getFromData(query)
+    .then(() => res.status(200).json(station))
+    .catch((error) => res.status(404).send(error));
 };
 
 exports.getPoliceStationById = (req, res) => {
@@ -25,8 +24,13 @@ exports.getPoliceStationById = (req, res) => {
   if (!id) {
     res.sendStatus(404);
   }
-  //   find in db by id
-  res.send({ id: 230, location: "Kharkiv, st. Sumska" });
+  const query = `SELECT * FROM police.station WHERE id = ${id}`;
+  model
+    .getFromData(query)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => res.status(404).send(error));
 };
 
 exports.pathPoliceStationById = (req, res) => {
@@ -39,6 +43,13 @@ exports.pathPoliceStationById = (req, res) => {
 };
 
 exports.deletePoliceStationById = (req, res) => {
-  //  delete by id
-  res.sendStatus(200);
+  const id = req.params.id;
+  if (!id) {
+    res.sendStatus(404);
+  }
+  const query = `DELETE FROM police.station WHERE id = ${id}`;
+  model
+    .getFromData(query)
+    .then(() => res.status(200).send("The police station was deleted"))
+    .catch((error) => res.status(404).send(error));
 };
