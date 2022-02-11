@@ -12,7 +12,7 @@ exports.getPoliceStations = (req, res) => {
 
 exports.postPoliceStation = (req, res) => {
   const station = req.body;
-  const query = `INSERT INTO police.station (id, location) VALUES (${station.id}, '${station.location}')`;
+  const query = `INSERT INTO police.station (id, location) VALUES (${station.id}, "${station.location}")`;
   model
     .getFromData(query)
     .then(() => res.status(200).json(station))
@@ -33,13 +33,16 @@ exports.getPoliceStationById = (req, res) => {
     .catch((error) => res.status(404).send(error));
 };
 
-exports.pathPoliceStationById = (req, res) => {
+exports.patchPoliceStationById = (req, res) => {
+  const station = req.body;
   const id = req.params.id;
-  if (!id) {
-    res.sendStatus(404);
-  }
-  //   patch by id
-  res.send({ id: 230, location: "Kharkiv, st. Sumska" });
+  console.log(station.location);
+  console.log(id);
+  const query = `UPDATE police.station SET location = '${station.location}' WHERE id = ${id}`;
+  model
+    .getFromData(query)
+    .then(() => res.status(200).json(station))
+    .catch((error) => res.status(404).send(error));
 };
 
 exports.deletePoliceStationById = (req, res) => {

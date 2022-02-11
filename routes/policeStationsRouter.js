@@ -20,7 +20,7 @@ const policeStationsRouter = express.Router();
  *              description: Police station adress
  *        example:
  *            id: 123
- *            location: Kiev, st. Freedom
+ *            location: Kiev st. Freedom
  */
 
 /**
@@ -132,7 +132,7 @@ policeStationsRouter.get("/:id", policeStationsController.getPoliceStationById);
 
 policeStationsRouter.patch(
   "/:id",
-  policeStationsController.pathPoliceStationById
+  policeStationsController.patchPoliceStationById
 );
 
 /**
