@@ -8,7 +8,10 @@
     },
     "servers": [
       {
-        "url": "http://localhost:3000"
+        "url": "http://localhost:3000"        
+      },
+      {
+        "url": "https://aqueous-eyrie-29899.herokuapp.com/"        
       }
     ]
   },
