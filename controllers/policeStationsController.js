@@ -12,7 +12,8 @@ exports.getPoliceStations = (req, res) => {
 
 exports.postPoliceStation = (req, res) => {
   const station = req.body;
-  const query = `INSERT INTO police.station (id, location) VALUES (${station.id}, "${station.location}")`;
+  console.log(req.body);
+  const query = `INSERT INTO police.station (id, location) VALUES (${station.id}, '${station.location}')`;
   model
     .getFromData(query)
     .then(() => res.status(200).json(station))
@@ -36,8 +37,6 @@ exports.getPoliceStationById = (req, res) => {
 exports.patchPoliceStationById = (req, res) => {
   const station = req.body;
   const id = req.params.id;
-  console.log(station.location);
-  console.log(id);
   const query = `UPDATE police.station SET location = '${station.location}' WHERE id = ${id}`;
   model
     .getFromData(query)
