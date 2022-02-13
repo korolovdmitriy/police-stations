@@ -12,8 +12,8 @@ const client = new Client({
 });
 
 exports.getFromData = async (query) => {
-  await client.connect();
+  // await client.connect();
   const result = await client.execute(query);
-  await client.shutdown();
+  // await client.shutdown();
   return result.rows;
 };
