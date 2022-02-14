@@ -14,7 +14,7 @@ module.exports = {
 
   async postPoliceStation(id, location) {
     const query = `INSERT INTO police.station (id, location) VALUES (${id}, '${location}')`;
-    return (result = await client.execute(query));
+    return await client.execute(query);
   },
 
   async getPoliceStationById(id) {
@@ -25,11 +25,11 @@ module.exports = {
 
   async patchPoliceStationById(id, location) {
     const query = `UPDATE police.station SET location = '${location}' WHERE id = ${id}`;
-    return (result = await client.execute(query));
+    return await client.execute(query);
   },
 
   async deletePoliceStationById(id) {
     const query = `DELETE FROM police.station WHERE id = ${id}`;
-    return (result = await client.execute(query));
+    return await client.execute(query);
   },
 };
