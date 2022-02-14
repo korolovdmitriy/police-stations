@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
-const cassandra = require("cassandra-driver");
 const policeStationsRouter = require("./routes/policeStationsRouter");
 const options = require("./swagger-config.json");
 

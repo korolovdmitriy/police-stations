@@ -2,9 +2,8 @@ const model = require("../models/model");
 
 module.exports = {
   getPoliceStations(req, res) {
-    const query = "SELECT * FROM police.station";
     model
-      .getFromData(query)
+      .getPoliceStations()
       .then((result) => {
         res.status(200).json(result);
       })
@@ -12,12 +11,11 @@ module.exports = {
   },
 
   postPoliceStation(req, res) {
-    const station = req.body;
-    console.log(req.body);
-    const query = `INSERT INTO police.station (id, location) VALUES (${station.id}, '${station.location}')`;
+    const { id, location } = req.body;
+
     model
-      .getFromData(query)
-      .then(() => res.status(200).json(station))
+      .postPoliceStation(id, location)
+      .then(() => res.status(200).send("The police station was add"))
       .catch((error) => res.status(404).send(error));
   },
 
@@ -26,9 +24,8 @@ module.exports = {
     if (!id) {
       res.sendStatus(404);
     }
-    const query = `SELECT * FROM police.station WHERE id = ${id}`;
     model
-      .getFromData(query)
+      .getPoliceStationById(id)
       .then((result) => {
         res.status(200).json(result);
       })
@@ -36,12 +33,10 @@ module.exports = {
   },
 
   patchPoliceStationById(req, res) {
-    const station = req.body;
-    const id = req.params.id;
-    const query = `UPDATE police.station SET location = '${station.location}' WHERE id = ${id}`;
+    const { id, location } = req.body;
     model
-      .getFromData(query)
-      .then(() => res.status(200).json(station))
+      .patchPoliceStationById(id, location)
+      .then(() => res.status(200).json("The police station was update"))
       .catch((error) => res.status(404).send(error));
   },
 
@@ -50,9 +45,8 @@ module.exports = {
     if (!id) {
       res.sendStatus(404);
     }
-    const query = `DELETE FROM police.station WHERE id = ${id}`;
     model
-      .getFromData(query)
+      .deletePoliceStationById(id)
       .then(() => res.status(200).send("The police station was deleted"))
       .catch((error) => res.status(404).send(error));
   },
