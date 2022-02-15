@@ -60,8 +60,7 @@ module.exports = {
     policeStationSevises
       .getAllCrimesByPoliceStationId(id)
       .then((result) => {
-        console.log(result);
-        res.status(200).json(result);
+        res.status(200).json(result.data);
       })
       .catch((error) => res.status(404).send(error));
   },

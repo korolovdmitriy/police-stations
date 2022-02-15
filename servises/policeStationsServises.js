@@ -1,7 +1,8 @@
+const axios = require("axios");
+
 module.exports = {
   async getAllCrimesByPoliceStationId(id) {
-    return await fetch(
-      `http://aqueous-eyrie-29899.herokuapp.com/policeStations/${id}`
-    );
+    const url = `http://aqueous-eyrie-29899.herokuapp.com/policeStations/${id}`;
+    return await axios.get(url);
   },
 };
