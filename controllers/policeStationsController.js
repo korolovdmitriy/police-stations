@@ -1,4 +1,5 @@
-const model = require("../models/model");
+const model = require("../models/policeStationsModel");
+const policeStationSevises = require("../services/crimeService");
 
 module.exports = {
   getPoliceStations(req, res) {
@@ -48,6 +49,19 @@ module.exports = {
     model
       .deletePoliceStationById(id)
       .then(() => res.status(200).send("The police station was deleted"))
+      .catch((error) => res.status(404).send(error));
+  },
+
+  getAllCrimesByPoliceStationId(req, res) {
+    const id = req.params.id;
+    if (!id) {
+      res.sendStatus(404);
+    }
+    policeStationSevises
+      .getAllCrimesByPoliceStationId(id)
+      .then((result) => {
+        res.status(200).json(result.data);
+      })
       .catch((error) => res.status(404).send(error));
   },
 };
