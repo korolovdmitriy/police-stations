@@ -1,11 +1,6 @@
 const client = require("./db-connect");
 
 module.exports = {
-  async getFromData(query) {
-    const result = await client.execute(query);
-    return result.rows;
-  },
-
   async getPoliceStations() {
     const query = "SELECT * FROM police.station";
     const result = await client.execute(query);

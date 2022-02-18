@@ -1,5 +1,5 @@
-const model = require("../models/model");
-const policeStationSevises = require("../servises/policeStationsServises");
+const model = require("../models/policeStationsModel");
+const policeStationSevises = require("../services/crimeService");
 
 module.exports = {
   getPoliceStations(req, res) {
