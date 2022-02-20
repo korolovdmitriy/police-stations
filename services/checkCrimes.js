@@ -24,7 +24,6 @@ module.exports = {
     if (resultOfcheckCrimes.length === 0) {
       return "Missing value not found";
     }
-
     return resultOfcheckCrimes;
   },
 };
