@@ -64,4 +64,14 @@ module.exports = {
       })
       .catch((error) => res.status(404).send(error));
   },
+
+  checkCrimesByPoliceStationId(req, res) {
+    const id = req.params.id;
+    if (!id) {
+      res.sendStatus(404);
+    }
+    policeStationSevises.checkAllCrimesByPoliceStationId(id).then((result) => {
+      res.status(200).json(result);
+    });
+  },
 };

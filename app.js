@@ -3,11 +3,11 @@ const cors = require("cors");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const policeStationsRouter = require("./routes/policeStationsRouter");
-const options = require("./swagger-config.json");
+const swaggerConfig = require("./swagger-config.json");
 
 const PORT = process.env.PORT || 3000;
 
-const specs = swaggerJsDoc(options);
+const specs = swaggerJsDoc(swaggerConfig);
 
 const app = express();
 app.use(express.json());

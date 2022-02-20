@@ -171,7 +171,7 @@ policeStationsRouter.delete(
  *       - in: path
  *         name: id
  *         schema:
- *           type: number
+ *           type: string
  *         required: true
  *         description: The police stations id
  *     responses:
@@ -188,6 +188,35 @@ policeStationsRouter.delete(
 policeStationsRouter.get(
   "/:id/crimes",
   policeStationsController.getAllCrimesByPoliceStationId
+);
+
+/**
+ * @swagger
+ * /policeStations/{id}/checkCrimes:
+ *   get:
+ *     summary: Check all crimes by police station id
+ *     tags: [Police stations]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The police stations id
+ *     responses:
+ *       200:
+ *         description: Crimes by police station id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Station'
+ *       404:
+ *         description: The crimes was not found
+ */
+
+policeStationsRouter.get(
+  "/:id/checkCrimes",
+  policeStationsController.checkCrimesByPoliceStationId
 );
 
 module.exports = policeStationsRouter;
