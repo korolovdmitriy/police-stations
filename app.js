@@ -4,6 +4,7 @@ const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const policeStationsRouter = require("./routes/policeStationsRouter");
 const swaggerConfig = require("./swagger-config.json");
+const morgan = require("morgan");
 
 const PORT = process.env.PORT || 3000;
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use(cors());
+app.use(morgan("dev"));
 
 app.use("/policeStations", policeStationsRouter);
 
