@@ -13,14 +13,14 @@ const policeStationsRouter = express.Router();
  *            - location
  *        properties:
  *            id:
- *              type: number
+ *              type: string
  *              description: ID of police station
  *            location:
  *              type: string
  *              description: Police station adress
  *        example:
- *            id: 123
- *            location: Kiev st. Freedom
+ *            id: afc8a1f8-94b5-11ec-b909-0242ac120002
+ *            location: Kiev
  */
 
 /**
@@ -84,7 +84,7 @@ policeStationsRouter.post("/", policeStationsController.postPoliceStation);
  *       - in: path
  *         name: id
  *         schema:
- *           type: number
+ *           type: string
  *         required: true
  *         description: The police stations id
  *     responses:
@@ -110,7 +110,7 @@ policeStationsRouter.get("/:id", policeStationsController.getPoliceStationById);
  *      - in: path
  *        name: id
  *        schema:
- *          type: number
+ *          type: string
  *        required: true
  *        description: The police station id
  *    requestBody:
@@ -145,7 +145,7 @@ policeStationsRouter.patch(
  *       - in: path
  *         name: id
  *         schema:
- *           type: number
+ *           type: string
  *         required: true
  *         description: The police station id
  *
