@@ -1,8 +1,15 @@
 const model = require("../models/policeStationsModel");
+const checkRoleService = require("../services/checkRole");
 const policeStationSevises = require("../services/crimeService");
 
 module.exports = {
   getPoliceStations(req, res) {
+    const authorization = req.headers.authorization;
+    const auth = checkRoleService.checkRole(authorization);
+    if (auth instanceof Error) {
+      return res.status(401).send("Access denied");
+    }
+
     model
       .getPoliceStations()
       .then((result) => {
@@ -12,8 +19,13 @@ module.exports = {
   },
 
   postPoliceStation(req, res) {
-    const { id, location } = req.body;
+    const authorization = req.headers.authorization;
+    const auth = checkRoleService.checkRole(authorization);
+    if (auth instanceof Error) {
+      return res.status(401).send("Access denied");
+    }
 
+    const { id, location } = req.body;
     model
       .postPoliceStation(id, location)
       .then(() => res.status(200).send("The police station was add"))
@@ -21,6 +33,11 @@ module.exports = {
   },
 
   getPoliceStationById(req, res) {
+    const authorization = req.headers.authorization;
+    const auth = checkRoleService.checkRole(authorization);
+    if (auth instanceof Error) {
+      return res.status(401).send("Access denied");
+    }
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);
@@ -34,6 +51,11 @@ module.exports = {
   },
 
   patchPoliceStationById(req, res) {
+    const authorization = req.headers.authorization;
+    const auth = checkRoleService.checkRole(authorization);
+    if (auth instanceof Error) {
+      return res.status(401).send("Access denied");
+    }
     const { id, location } = req.body;
     model
       .patchPoliceStationById(id, location)
@@ -42,6 +64,11 @@ module.exports = {
   },
 
   deletePoliceStationById(req, res) {
+    const authorization = req.headers.authorization;
+    const auth = checkRoleService.checkRole(authorization);
+    if (auth instanceof Error) {
+      return res.status(401).send("Access denied");
+    }
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);
@@ -53,6 +80,11 @@ module.exports = {
   },
 
   getAllCrimesByPoliceStationId(req, res) {
+    const authorization = req.headers.authorization;
+    const auth = checkRoleService.checkRole(authorization);
+    if (auth instanceof Error) {
+      return res.status(401).send("Access denied");
+    }
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);
@@ -66,6 +98,11 @@ module.exports = {
   },
 
   checkCrimesByPoliceStationId(req, res) {
+    const authorization = req.headers.authorization;
+    const auth = checkRoleService.checkRole(authorization);
+    if (auth instanceof Error) {
+      return res.status(401).send("Access denied");
+    }
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);

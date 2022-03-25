@@ -5,6 +5,11 @@ const policeStationsRouter = express.Router();
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *      Station:
  *        type: object
@@ -35,6 +40,8 @@ const policeStationsRouter = express.Router();
  * /policeStations:
  *   get:
  *     summary: Get all police station locations info
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     responses:
  *       200:
@@ -54,6 +61,8 @@ policeStationsRouter.get("/", policeStationsController.getPoliceStations);
  * /policeStations:
  *   post:
  *     summary: Adds police station
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     requestBody:
  *       required: true
@@ -79,6 +88,8 @@ policeStationsRouter.post("/", policeStationsController.postPoliceStation);
  * /policeStations/{id}:
  *   get:
  *     summary: Get police station by id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
@@ -105,6 +116,8 @@ policeStationsRouter.get("/:id", policeStationsController.getPoliceStationById);
  * /policeStations/{id}:
  *  patch:
  *    summary: Change police station by id
+ *    security:
+ *       - bearerAuth: []
  *    tags: [Police stations]
  *    parameters:
  *      - in: path
@@ -140,6 +153,8 @@ policeStationsRouter.patch(
  * /policeStations/{id}:
  *   delete:
  *     summary: Delete police stations by id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
@@ -166,6 +181,8 @@ policeStationsRouter.delete(
  * /policeStations/{id}/crimes:
  *   get:
  *     summary: Get all crimes by police station id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
@@ -195,6 +212,8 @@ policeStationsRouter.get(
  * /policeStations/{id}/checkCrimes:
  *   get:
  *     summary: Check all crimes by police station id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
