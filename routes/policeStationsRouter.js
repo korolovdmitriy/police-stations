@@ -1,6 +1,8 @@
 const express = require("express");
 const policeStationsController = require("../controllers/policeStationsController");
 const policeStationsRouter = express.Router();
+const authMiddleware = require("../middlewares/auth-middleware");
+const checkPoliceRoleMiddleware = require("../middlewares/checkPoliceRole-middleware");
 
 /**
  * @swagger
@@ -54,7 +56,11 @@ const policeStationsRouter = express.Router();
  *                 $ref: '#/components/schemas/Station'
  */
 
-policeStationsRouter.get("/", policeStationsController.getPoliceStations);
+policeStationsRouter.get(
+  "/",
+  authMiddleware,
+  policeStationsController.getPoliceStations
+);
 
 /**
  * @swagger
@@ -81,7 +87,12 @@ policeStationsRouter.get("/", policeStationsController.getPoliceStations);
  *         description: Server error
  */
 
-policeStationsRouter.post("/", policeStationsController.postPoliceStation);
+policeStationsRouter.post(
+  "/",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
+  policeStationsController.postPoliceStation
+);
 
 /**
  * @swagger
@@ -109,7 +120,12 @@ policeStationsRouter.post("/", policeStationsController.postPoliceStation);
  *         description: The police stations was not found
  */
 
-policeStationsRouter.get("/:id", policeStationsController.getPoliceStationById);
+policeStationsRouter.get(
+  "/:id",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
+  policeStationsController.getPoliceStationById
+);
 
 /**
  * @swagger
@@ -145,6 +161,8 @@ policeStationsRouter.get("/:id", policeStationsController.getPoliceStationById);
 
 policeStationsRouter.patch(
   "/:id",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.patchPoliceStationById
 );
 
@@ -173,6 +191,8 @@ policeStationsRouter.patch(
 
 policeStationsRouter.delete(
   "/:id",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.deletePoliceStationById
 );
 
@@ -204,6 +224,8 @@ policeStationsRouter.delete(
 
 policeStationsRouter.get(
   "/:id/crimes",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.getAllCrimesByPoliceStationId
 );
 
@@ -235,6 +257,8 @@ policeStationsRouter.get(
 
 policeStationsRouter.get(
   "/:id/checkCrimes",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.checkCrimesByPoliceStationId
 );
 

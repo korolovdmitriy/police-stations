@@ -7,6 +7,7 @@ const swaggerConfig = require("./configs/swagger-config.json");
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
+const errorMiddleware = require("./middlewares/error-middleware");
 
 const PORT = process.env.PORT || 3000;
 
@@ -33,9 +34,7 @@ app.use(
 
 app.use("/policeStations", policeStationsRouter);
 
-app.use((req, res, next) => {
-  res.status(500).send("Something broke!");
-});
+app.use(errorMiddleware);
 
 app.listen(PORT, () => {
   console.log(`Server has been started on port ${PORT}`);
