@@ -11,9 +11,6 @@
         "url": "http://localhost:3000"        
       },
       {
-        "url": "https://aqueous-eyrie-29899.herokuapp.com/"        
-      },
-      {
         "url": "https://police-app-server.herokuapp.com/"        
       }
     ]
