@@ -54,6 +54,14 @@ const checkPoliceRoleMiddleware = require("../middlewares/checkPoliceRole-middle
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Station'
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.get(
@@ -83,8 +91,14 @@ policeStationsRouter.get(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
  *       500:
- *         description: Server error
+ *         description: Unexpected error
  */
 
 policeStationsRouter.post(
@@ -116,8 +130,14 @@ policeStationsRouter.post(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
- *       404:
- *         description: The police stations was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.get(
@@ -185,8 +205,14 @@ policeStationsRouter.patch(
  *     responses:
  *       200:
  *         description: The police station was deleted
- *       404:
- *         description: The police station was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.delete(
@@ -218,8 +244,14 @@ policeStationsRouter.delete(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
- *       404:
- *         description: The crimes was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.get(
@@ -251,8 +283,14 @@ policeStationsRouter.get(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
- *       404:
- *         description: The crimes was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.get(

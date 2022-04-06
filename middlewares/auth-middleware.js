@@ -1,5 +1,6 @@
 const ApiError = require("../exceptions/api-error");
 const jwt = require("jsonwebtoken");
+const tokenKeys = require("../configs/token-keys.json")
 
 module.exports = function (req, res, next) {
   try {
@@ -11,7 +12,7 @@ module.exports = function (req, res, next) {
     if (!accessToken) {
       return next(ApiError.UnauthorizedError());
     }
-    const userData = jwt.verify(accessToken, "key-secret");
+    const userData = jwt.verify(accessToken, tokenKeys.accessKey);
     if (!userData) {
       return next(ApiError.UnauthorizedError());
     }
