@@ -12,6 +12,9 @@
       },
       {
         "url": "https://police-app-server.herokuapp.com/"        
+      },
+      {
+        "url": "https://policeapp.azurewebsites.net/"        
       }
     ]
   },
