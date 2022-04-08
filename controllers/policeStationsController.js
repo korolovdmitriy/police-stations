@@ -1,4 +1,5 @@
 const model = require("../models/policeStationsModel");
+const ApiError = require("../exceptions/api-error");
 const policeStationSevises = require("../services/crimeService");
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
       .then((result) => {
         res.status(200).json(result);
       })
-      .catch((error) => next(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
   postPoliceStation(req, res, next) {
@@ -16,7 +17,7 @@ module.exports = {
     model
       .postPoliceStation(id, location)
       .then(() => res.status(200).send("The police station was add"))
-      .catch((error) => next(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
   getPoliceStationById(req, res, next) {
@@ -29,7 +30,7 @@ module.exports = {
       .then((result) => {
         res.status(200).json(result);
       })
-      .catch((error) => next(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
   patchPoliceStationById(req, res, next) {
@@ -37,7 +38,7 @@ module.exports = {
     model
       .patchPoliceStationById(id, location)
       .then(() => res.status(200).json("The police station was update"))
-      .catch((error) => next(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
   deletePoliceStationById(req, res, next) {
@@ -48,7 +49,7 @@ module.exports = {
     model
       .deletePoliceStationById(id)
       .then(() => res.status(200).send("The police station was deleted"))
-      .catch((error) => next(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
   getAllCrimesByPoliceStationId(req, res, next) {
@@ -61,7 +62,7 @@ module.exports = {
       .then((result) => {
         res.status(200).json(result.data);
       })
-      .catch((error) => next(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
   checkCrimesByPoliceStationId(req, res, next) {
@@ -74,6 +75,6 @@ module.exports = {
       .then((result) => {
         res.status(200).json(result);
       })
-      .catch((error) => next(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 };
