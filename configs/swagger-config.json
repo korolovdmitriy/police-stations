@@ -11,9 +11,26 @@
         "url": "http://localhost:3000"        
       },
       {
-        "url": "https://aqueous-eyrie-29899.herokuapp.com/"        
+        "url": "https://police-app-server.herokuapp.com/"        
+      },
+      {
+        "url": "https://policeapp.azurewebsites.net/"        
       }
     ]
   },
+  "components": {
+      "securitySchemes": {
+        "jwt": {
+          "type": "http",
+          "scheme": "bearer",
+          "in": "header",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+    ,
+    "security": [{
+      "jwt": []
+    }],
   "apis": ["./routes/*.js"]
 }

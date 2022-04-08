@@ -1,10 +1,17 @@
 const express = require("express");
 const policeStationsController = require("../controllers/policeStationsController");
 const policeStationsRouter = express.Router();
+const authMiddleware = require("../middlewares/auth-middleware");
+const checkPoliceRoleMiddleware = require("../middlewares/checkPoliceRole-middleware");
 
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
  *      Station:
  *        type: object
@@ -35,6 +42,8 @@ const policeStationsRouter = express.Router();
  * /policeStations:
  *   get:
  *     summary: Get all police station locations info
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     responses:
  *       200:
@@ -45,15 +54,29 @@ const policeStationsRouter = express.Router();
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Station'
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
-policeStationsRouter.get("/", policeStationsController.getPoliceStations);
+policeStationsRouter.get(
+  "/",
+  authMiddleware,
+  policeStationsController.getPoliceStations
+);
 
 /**
  * @swagger
  * /policeStations:
  *   post:
  *     summary: Adds police station
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     requestBody:
  *       required: true
@@ -68,17 +91,30 @@ policeStationsRouter.get("/", policeStationsController.getPoliceStations);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
  *       500:
- *         description: Server error
+ *         description: Unexpected error
  */
 
-policeStationsRouter.post("/", policeStationsController.postPoliceStation);
+policeStationsRouter.post(
+  "/",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
+  policeStationsController.postPoliceStation
+);
 
 /**
  * @swagger
  * /policeStations/{id}:
  *   get:
  *     summary: Get police station by id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
@@ -94,17 +130,30 @@ policeStationsRouter.post("/", policeStationsController.postPoliceStation);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
- *       404:
- *         description: The police stations was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
-policeStationsRouter.get("/:id", policeStationsController.getPoliceStationById);
+policeStationsRouter.get(
+  "/:id",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
+  policeStationsController.getPoliceStationById
+);
 
 /**
  * @swagger
  * /policeStations/{id}:
  *  patch:
  *    summary: Change police station by id
+ *    security:
+ *       - bearerAuth: []
  *    tags: [Police stations]
  *    parameters:
  *      - in: path
@@ -132,6 +181,8 @@ policeStationsRouter.get("/:id", policeStationsController.getPoliceStationById);
 
 policeStationsRouter.patch(
   "/:id",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.patchPoliceStationById
 );
 
@@ -140,6 +191,8 @@ policeStationsRouter.patch(
  * /policeStations/{id}:
  *   delete:
  *     summary: Delete police stations by id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
@@ -152,12 +205,20 @@ policeStationsRouter.patch(
  *     responses:
  *       200:
  *         description: The police station was deleted
- *       404:
- *         description: The police station was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.delete(
   "/:id",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.deletePoliceStationById
 );
 
@@ -166,6 +227,8 @@ policeStationsRouter.delete(
  * /policeStations/{id}/crimes:
  *   get:
  *     summary: Get all crimes by police station id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
@@ -181,12 +244,20 @@ policeStationsRouter.delete(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
- *       404:
- *         description: The crimes was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.get(
   "/:id/crimes",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.getAllCrimesByPoliceStationId
 );
 
@@ -195,6 +266,8 @@ policeStationsRouter.get(
  * /policeStations/{id}/checkCrimes:
  *   get:
  *     summary: Check all crimes by police station id
+ *     security:
+ *       - bearerAuth: []
  *     tags: [Police stations]
  *     parameters:
  *       - in: path
@@ -210,12 +283,20 @@ policeStationsRouter.get(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Station'
- *       404:
- *         description: The crimes was not found
+ *       400:
+ *         description: Bad request
+ *       401:
+ *         description: User not authorized
+ *       403:
+ *         description: Access denied
+ *       500:
+ *         description: Unexpected error
  */
 
 policeStationsRouter.get(
   "/:id/checkCrimes",
+  authMiddleware,
+  checkPoliceRoleMiddleware,
   policeStationsController.checkCrimesByPoliceStationId
 );
 

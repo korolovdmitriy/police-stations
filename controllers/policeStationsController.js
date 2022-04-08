@@ -1,26 +1,26 @@
 const model = require("../models/policeStationsModel");
+const ApiError = require("../exceptions/api-error");
 const policeStationSevises = require("../services/crimeService");
 
 module.exports = {
-  getPoliceStations(req, res) {
+  getPoliceStations(req, res, next) {
     model
       .getPoliceStations()
       .then((result) => {
         res.status(200).json(result);
       })
-      .catch((error) => res.status(404).send(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
-  postPoliceStation(req, res) {
+  postPoliceStation(req, res, next) {
     const { id, location } = req.body;
-
     model
       .postPoliceStation(id, location)
       .then(() => res.status(200).send("The police station was add"))
-      .catch((error) => res.status(404).send(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
-  getPoliceStationById(req, res) {
+  getPoliceStationById(req, res, next) {
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);
@@ -30,18 +30,18 @@ module.exports = {
       .then((result) => {
         res.status(200).json(result);
       })
-      .catch((error) => res.status(404).send(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
-  patchPoliceStationById(req, res) {
+  patchPoliceStationById(req, res, next) {
     const { id, location } = req.body;
     model
       .patchPoliceStationById(id, location)
       .then(() => res.status(200).json("The police station was update"))
-      .catch((error) => res.status(404).send(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
-  deletePoliceStationById(req, res) {
+  deletePoliceStationById(req, res, next) {
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);
@@ -49,10 +49,10 @@ module.exports = {
     model
       .deletePoliceStationById(id)
       .then(() => res.status(200).send("The police station was deleted"))
-      .catch((error) => res.status(404).send(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
-  getAllCrimesByPoliceStationId(req, res) {
+  getAllCrimesByPoliceStationId(req, res, next) {
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);
@@ -62,16 +62,19 @@ module.exports = {
       .then((result) => {
         res.status(200).json(result.data);
       })
-      .catch((error) => res.status(404).send(error));
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 
-  checkCrimesByPoliceStationId(req, res) {
+  checkCrimesByPoliceStationId(req, res, next) {
     const id = req.params.id;
     if (!id) {
       res.sendStatus(404);
     }
-    policeStationSevises.checkAllCrimesByPoliceStationId(id).then((result) => {
-      res.status(200).json(result);
-    });
+    policeStationSevises
+      .checkAllCrimesByPoliceStationId(id)
+      .then((result) => {
+        res.status(200).json(result);
+      })
+      .catch((error) => next(ApiError.BadRequest(error)));
   },
 };
