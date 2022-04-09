@@ -28,6 +28,16 @@ const checkPoliceRoleMiddleware = require("../middlewares/checkPoliceRole-middle
  *        example:
  *            id: afc8a1f8-94b5-11ec-b909-0242ac120002
  *            location: Kiev
+ *      Stationbody:
+ *        type: object
+ *        required:
+ *            - location
+ *        properties:
+ *            location:
+ *              type: string
+ *              description: Police station adress
+ *        example:
+ *            location: Kiev
  */
 
 /**
@@ -83,7 +93,7 @@ policeStationsRouter.get(
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Station'
+ *             $ref: '#/components/schemas/Stationbody'
  *     responses:
  *       200:
  *         description: The police station was successfully created
@@ -167,7 +177,7 @@ policeStationsRouter.get(
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Station'
+ *            $ref: '#/components/schemas/Stationbody'
  *    responses:
  *      200:
  *        description: The police station was updated
