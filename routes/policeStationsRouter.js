@@ -3,6 +3,7 @@ const policeStationsController = require("../controllers/policeStationsControlle
 const policeStationsRouter = express.Router();
 const authMiddleware = require("../middlewares/auth-middleware");
 const checkPoliceRoleMiddleware = require("../middlewares/checkPoliceRole-middleware");
+const checkTokenMiddleware = require("../middlewares/checkToken-middleware");
 
 /**
  * @swagger
@@ -77,6 +78,7 @@ const checkPoliceRoleMiddleware = require("../middlewares/checkPoliceRole-middle
 policeStationsRouter.get(
   "/",
   authMiddleware,
+  checkTokenMiddleware,
   policeStationsController.getPoliceStations
 );
 
@@ -114,6 +116,7 @@ policeStationsRouter.get(
 policeStationsRouter.post(
   "/",
   authMiddleware,
+  checkTokenMiddleware,
   checkPoliceRoleMiddleware,
   policeStationsController.postPoliceStation
 );
@@ -153,6 +156,7 @@ policeStationsRouter.post(
 policeStationsRouter.get(
   "/:id",
   authMiddleware,
+  checkTokenMiddleware,
   checkPoliceRoleMiddleware,
   policeStationsController.getPoliceStationById
 );
@@ -192,6 +196,7 @@ policeStationsRouter.get(
 policeStationsRouter.patch(
   "/:id",
   authMiddleware,
+  checkTokenMiddleware,
   checkPoliceRoleMiddleware,
   policeStationsController.patchPoliceStationById
 );
@@ -228,6 +233,7 @@ policeStationsRouter.patch(
 policeStationsRouter.delete(
   "/:id",
   authMiddleware,
+  checkTokenMiddleware,
   checkPoliceRoleMiddleware,
   policeStationsController.deletePoliceStationById
 );
@@ -267,6 +273,7 @@ policeStationsRouter.delete(
 policeStationsRouter.get(
   "/:id/crimes",
   authMiddleware,
+  checkTokenMiddleware,
   checkPoliceRoleMiddleware,
   policeStationsController.getAllCrimesByPoliceStationId
 );
@@ -306,6 +313,7 @@ policeStationsRouter.get(
 policeStationsRouter.get(
   "/:id/checkCrimes",
   authMiddleware,
+  checkTokenMiddleware,
   checkPoliceRoleMiddleware,
   policeStationsController.checkCrimesByPoliceStationId
 );
