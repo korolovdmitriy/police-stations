@@ -13,13 +13,6 @@ module.exports = function (req, res, next) {
     if (!accessToken) {
       return next(ApiError.UnauthorizedError());
     }
-    // securityService.checkToken(accessToken).then((result) => {
-    //   if (result.data.message === "true") {
-    //     // console.log(result.data.message);
-    //     return next(ApiError.UnauthorizedError());
-    //   }
-    // });
-
     const userData = jwt.verify(accessToken, tokenKeys.accessKey);
     if (!userData) {
       return next(ApiError.UnauthorizedError());
