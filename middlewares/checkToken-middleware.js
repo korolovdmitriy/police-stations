@@ -11,3 +11,13 @@ module.exports = function (req, res, next) {
     next();
   });
 };
+
+// module.exports = async function (req, res, next) {
+//   const authorizationHeader = req.headers.authorization;
+//   const accessToken = authorizationHeader.split(" ")[1];
+//   const result = await securityService.checkToken(accessToken);
+//   if (result.data.message === "false") {
+//     return next(ApiError.UnauthorizedError());
+//   }
+//   next();
+// };
