@@ -22,6 +22,6 @@ module.exports = async function (req, res, next) {
     }
     next();
   } catch (error) {
-    return next(ApiError.BadRequest(error));
+    return next(ApiError.UnauthorizedError());
   }
 };
