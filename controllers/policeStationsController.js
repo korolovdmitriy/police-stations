@@ -15,7 +15,7 @@ module.exports = {
   postPoliceStation(req, res, next) {
     const { location } = req.body;
     if (!location || location === "") {
-      next(ApiError.BadRequest("Invalid request body"));
+      return next(ApiError.BadRequest("Invalid request body"));
     }
     model
       .postPoliceStation(location)
@@ -26,7 +26,7 @@ module.exports = {
   getPoliceStationById(req, res, next) {
     const id = req.params.id;
     if (!id) {
-      next(ApiError.BadRequest("Incorrect parameter value"));
+      return next(ApiError.BadRequest("Incorrect parameter value"));
     }
     model
       .getPoliceStationById(id)
@@ -39,11 +39,11 @@ module.exports = {
   patchPoliceStationById(req, res, next) {
     const id = req.params.id;
     if (!id) {
-      next(ApiError.BadRequest("Incorrect parameter value"));
+      return next(ApiError.BadRequest("Incorrect parameter value"));
     }
     const { location } = req.body;
     if (!location || location === "") {
-      next(ApiError.BadRequest("Invalid request body"));
+      return next(ApiError.BadRequest("Invalid request body"));
     }
     model
       .patchPoliceStationById(id, location)
@@ -54,7 +54,7 @@ module.exports = {
   deletePoliceStationById(req, res, next) {
     const id = req.params.id;
     if (!id) {
-      next(ApiError.BadRequest("Incorrect parameter value"));
+      return next(ApiError.BadRequest("Incorrect parameter value"));
     }
     model
       .deletePoliceStationById(id)
@@ -65,7 +65,7 @@ module.exports = {
   getAllCrimesByPoliceStationId(req, res, next) {
     const id = req.params.id;
     if (!id) {
-      next(ApiError.BadRequest("Incorrect parameter value"));
+      return next(ApiError.BadRequest("Incorrect parameter value"));
     }
     policeStationSevises
       .getAllCrimesByPoliceStationId(id)
@@ -78,7 +78,7 @@ module.exports = {
   checkCrimesByPoliceStationId(req, res, next) {
     const id = req.params.id;
     if (!id) {
-      next(ApiError.BadRequest("Incorrect parameter value"));
+      return next(ApiError.BadRequest("Incorrect parameter value"));
     }
     policeStationSevises
       .checkAllCrimesByPoliceStationId(id)
