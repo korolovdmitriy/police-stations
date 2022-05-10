@@ -50,7 +50,7 @@ const checkTokenMiddleware = require("../middlewares/checkToken-middleware");
 
 /**
  * @swagger
- * /policeStations:
+ * /police-stations:
  *   get:
  *     summary: Get all police station locations info
  *     security:
@@ -84,7 +84,7 @@ policeStationsRouter.get(
 
 /**
  * @swagger
- * /policeStations:
+ * /police-stations:
  *   post:
  *     summary: Adds police station
  *     security:
@@ -123,7 +123,7 @@ policeStationsRouter.post(
 
 /**
  * @swagger
- * /policeStations/{id}:
+ * /police-stations/{id}:
  *   get:
  *     summary: Get police station by id
  *     security:
@@ -163,7 +163,7 @@ policeStationsRouter.get(
 
 /**
  * @swagger
- * /policeStations/{id}:
+ * /police-stations/{id}:
  *  patch:
  *    summary: Change police station by id
  *    security:
@@ -203,7 +203,7 @@ policeStationsRouter.patch(
 
 /**
  * @swagger
- * /policeStations/{id}:
+ * /police-stations/{id}:
  *   delete:
  *     summary: Delete police stations by id
  *     security:
@@ -240,7 +240,7 @@ policeStationsRouter.delete(
 
 /**
  * @swagger
- * /policeStations/{id}/crimes:
+ * /police-stations/{id}/crimes:
  *   get:
  *     summary: Get all crimes by police station id
  *     security:
@@ -280,7 +280,7 @@ policeStationsRouter.get(
 
 /**
  * @swagger
- * /policeStations/{id}/checkCrimes:
+ * /police-stations/{id}/check-crimes:
  *   get:
  *     summary: Check all crimes by police station id
  *     security:
@@ -311,7 +311,7 @@ policeStationsRouter.get(
  */
 
 policeStationsRouter.get(
-  "/:id/checkCrimes",
+  "/:id/check-crimes",
   authMiddleware,
   checkTokenMiddleware,
   checkPoliceRoleMiddleware,

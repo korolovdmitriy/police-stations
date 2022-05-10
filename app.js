@@ -32,7 +32,7 @@ app.use(
   })
 );
 
-app.use("/policeStations", policeStationsRouter);
+app.use("/police-stations", policeStationsRouter);
 
 app.use(errorMiddleware);
 
