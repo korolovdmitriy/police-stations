@@ -77,8 +77,8 @@ const checkTokenMiddleware = require("../middlewares/checkToken-middleware");
 
 policeStationsRouter.get(
   "/",
-  authMiddleware,
-  checkTokenMiddleware,
+  // authMiddleware,
+  // checkTokenMiddleware,
   policeStationsController.getPoliceStations
 );
 
@@ -115,9 +115,9 @@ policeStationsRouter.get(
 
 policeStationsRouter.post(
   "/",
-  authMiddleware,
-  checkTokenMiddleware,
-  checkPoliceRoleMiddleware,
+  // authMiddleware,
+  // checkTokenMiddleware,
+  // checkPoliceRoleMiddleware,
   policeStationsController.postPoliceStation
 );
 
@@ -155,9 +155,9 @@ policeStationsRouter.post(
 
 policeStationsRouter.get(
   "/:id",
-  authMiddleware,
-  checkTokenMiddleware,
-  checkPoliceRoleMiddleware,
+  // authMiddleware,
+  // checkTokenMiddleware,
+  // checkPoliceRoleMiddleware,
   policeStationsController.getPoliceStationById
 );
 
@@ -195,9 +195,9 @@ policeStationsRouter.get(
 
 policeStationsRouter.patch(
   "/:id",
-  authMiddleware,
-  checkTokenMiddleware,
-  checkPoliceRoleMiddleware,
+  // authMiddleware,
+  // checkTokenMiddleware,
+  // checkPoliceRoleMiddleware,
   policeStationsController.patchPoliceStationById
 );
 
@@ -232,9 +232,9 @@ policeStationsRouter.patch(
 
 policeStationsRouter.delete(
   "/:id",
-  authMiddleware,
-  checkTokenMiddleware,
-  checkPoliceRoleMiddleware,
+  // authMiddleware,
+  // checkTokenMiddleware,
+  // checkPoliceRoleMiddleware,
   policeStationsController.deletePoliceStationById
 );
 
@@ -272,9 +272,9 @@ policeStationsRouter.delete(
 
 policeStationsRouter.get(
   "/:id/crimes",
-  authMiddleware,
-  checkTokenMiddleware,
-  checkPoliceRoleMiddleware,
+  // authMiddleware,
+  // checkTokenMiddleware,
+  // checkPoliceRoleMiddleware,
   policeStationsController.getAllCrimesByPoliceStationId
 );
 
@@ -312,9 +312,9 @@ policeStationsRouter.get(
 
 policeStationsRouter.get(
   "/:id/check-crimes",
-  authMiddleware,
-  checkTokenMiddleware,
-  checkPoliceRoleMiddleware,
+  // authMiddleware,
+  // checkTokenMiddleware,
+  // checkPoliceRoleMiddleware,
   policeStationsController.checkCrimesByPoliceStationId
 );
 
